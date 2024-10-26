@@ -41,5 +41,5 @@ fastify.listen({ port: PORT, host: IP }, (err, address) => {
         console.error(err);
         process.exit(1);
     }
-    console.log(`Server running on ${address}`);
+    console.log(`Riot Running On ${address}`);
 });

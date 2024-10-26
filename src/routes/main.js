@@ -6,6 +6,13 @@ async function main(fastify, options) {
             code: 200
         })
     });
+
+    fastify.get('/waitingroom/api/waitingroom', (request, reply) => {
+        return reply.status(200).send({
+            status: "OK",
+            code: 200
+        })
+    });
 }
 
 module.exports = main;
