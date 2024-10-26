@@ -1,9 +1,10 @@
 const fastify = require('fastify')();
 const formbody = require('@fastify/formbody');
 const fs = require("fs");
+require("dotenv").config();
 
-const PORT = 5595;
-const IP = "0.0.0.0";
+const PORT = Number(process.env.PORT) || 5595;
+const IP = process.env.IP || "0.0.0.0";
 
 fastify.register(formbody);
 
