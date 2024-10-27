@@ -8,3 +8,5 @@ A Universal Backend For More Recent Builds Of Fortnite!
 ### This Backend Is Made To Be Used With Carbon!
 Invite Link:
 https://discord.gg/carbon-897532507048796210
+
+# This will not get updated much right now because i am quite busy at the moment!
