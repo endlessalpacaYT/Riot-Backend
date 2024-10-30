@@ -8,10 +8,7 @@ async function main(fastify, options) {
     });
 
     fastify.get('/waitingroom/api/waitingroom', (request, reply) => {
-        return reply.status(200).send({
-            status: "OK",
-            code: 200
-        })
+        return reply.status(200).send().end();
     });
 }
 

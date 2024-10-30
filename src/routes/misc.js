@@ -1,5 +1,5 @@
 async function misc(fastify, options) {
-    fastify.get('/hotconfigs/v2/livefn.json', (request, reply) => {
+    fastify.get('/hotconfigs/v2/:filename', (request, reply) => {
         return reply.status(200).send({
             status: "OK",
             code: 200
