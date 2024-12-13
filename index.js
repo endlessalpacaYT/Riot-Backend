@@ -9,15 +9,26 @@ const IP = process.env.IP || "0.0.0.0";
 fastify.register(formbody);
 
 fs.readdirSync("./src/routes").forEach(fileName => {
-  try {
-      fastify.register(require(`./src/routes/${fileName}`));
-  } catch (err) {
-      console.error(`Error Registering Route: ${fileName}, Error: ` + err);
-  }
+    try {
+        fastify.register(require(`./src/routes/${fileName}`));
+    } catch (err) {
+        console.error(`Error Registering Route: ${fileName}, Error: ` + err);
+    }
+});
+
+fastify.addHook('onRequest', async (request, reply) => {
+    console.log(`[${new Date().toISOString()}] ${request.method} | ${request.url}`);
 });
 
 fastify.setNotFoundHandler((request, reply) => {
-    console.log(`404 Not Found - ${request.method} ${request.url}`);
+    console.warn(`404 Not Found - ${request.method} ${request.url}`);
+    console.warn('Headers:', request.headers);
+    if (request.body) {
+        console.warn('Body:', request.body);
+    }
+    else if (request.query) {
+        console.warn('Query:', request.query);
+    }
     reply.status(404).send({
         error: 'riot.errors.common.not_found',
         error_description: "The route you requested is unavailable!",

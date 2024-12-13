@@ -1,6 +1,6 @@
-const jsonwebtoken = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
-let token = jsonwebtoken.sign({
+/*let token = jwt.sign({
 	"app": "prod-fn",
 	"sub": "Riot",
 	"mver": false,
@@ -20,12 +20,12 @@ let token = jsonwebtoken.sign({
 	"exp": 2147483647,
 	"iat": 1725882476,
 	"jti": "132fac2cc9c94fa08fdc3e65fef24f07"
-  },"PS256",  {keyid:""})
+}, "PS256", { keyid: "" })*/
 
 async function auth(fastify, options) {
-    fastify.post('/account/api/oauth/token', (request, reply) => {
-        return reply.status(200).send({
-            access_token: `eg1~${token}`,
+	fastify.post('/account/api/oauth/token', (request, reply) => {
+		return reply.status(200).send({
+			access_token: `eg1~Riot`,
 			expires_in: 28800,
 			expires_at: "9999-12-31T23:59:59.999Z",
 			token_type: "bearer",
@@ -33,19 +33,19 @@ async function auth(fastify, options) {
 			client_id: "Riot",
 			internal_client: true,
 			client_service: "fortnite",
-			refresh_token: `eg1~${token}`,
+			refresh_token: `eg1~Riot`,
 			refresh_expires: 115200,
 			refresh_expires_at: "9999-12-31T23:59:59.999Z",
 			displayName: "Riot",
 			app: "fortnite",
 			in_app_id: "Riot",
 			device_id: "5dcab5dbe86a7344b061ba57cdb33c4f"
-        })
-    })
+		})
+	})
 
-    fastify.get('/account/api/oauth/verify', (request, reply) => {
-        return reply.status(200).send({
-            access_token: `eg1~${token}`,
+	fastify.get('/account/api/oauth/verify', (request, reply) => {
+		return reply.status(200).send({
+			access_token: `eg1~Riot`,
 			expires_in: 28800,
 			expires_at: "9999-12-31T23:59:59.999Z",
 			token_type: "bearer",
@@ -53,15 +53,34 @@ async function auth(fastify, options) {
 			client_id: "Riot",
 			internal_client: true,
 			client_service: "fortnite",
-			refresh_token: `eg1~${token}`,
+			refresh_token: `eg1~Riot`,
 			refresh_expires: 115200,
 			refresh_expires_at: "9999-12-31T23:59:59.999Z",
 			displayName: "Riot",
 			app: "fortnite",
 			in_app_id: "Riot",
 			device_id: "5dcab5dbe86a7344b061ba57cdb33c4f"
-        })
-    })
+		})
+	})
+
+	fastify.post('/epic/oauth/v2/token', (req, res) => {
+		res.json({
+			"scope": "basic_profile friends_list openid presence",
+			"token_type": "bearer",
+			"access_token": `eg1~Riot`,
+			"refresh_token": `eg1~Riot`,
+			"id_token": `eg1~Riot`,
+			"expires_in": 115200,
+			"expires_at": "9999-12-31T23:59:59.999Z",
+			"refresh_expires_in": 115200,
+			"refresh_expires_at": "9999-12-31T23:59:59.999Z",
+			"account_id": "Riot",
+			"client_id": "ec684b8c687f479fadea3cb2ad83f5c6",
+			"application_id": "fghi4567FNFBKFz3E4TROb0bmPS8h1GW",
+			"selected_account_id": "Riot",
+			"merged_accounts": []
+		})
+	});
 }
 
 module.exports = auth;

@@ -5,7 +5,7 @@ A Universal Backend For More Recent Builds Of Fortnite!
 ### Features:
 - [ ] Logging In
 
-### This Backend Is Made To Be Used With Carbon!
+### This Backend Is Optimised For Use With Carbon!
 Invite Link:
 https://discord.gg/carbon-897532507048796210
 

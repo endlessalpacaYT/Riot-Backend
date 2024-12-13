@@ -44,6 +44,11 @@ async function account(fastify, options) {
             externalAuths: {}
         })
     })
+
+    fastify.post('/fortnite/api/game/v2/tryPlayOnPlatform/account/:accountId', (request, reply) => {
+        reply.header("Content-Type", "text/plain");
+        return reply.status(200).send("true");
+    });
 }
 
 module.exports = account;

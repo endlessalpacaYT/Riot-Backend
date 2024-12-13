@@ -1,10 +1,12 @@
 {
   "dependencies": {
     "@fastify/formbody": "^8.0.1",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "fastify": "^5.0.0",
     "fs": "^0.0.1-security",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
