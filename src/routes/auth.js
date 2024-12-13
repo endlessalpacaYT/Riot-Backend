@@ -100,7 +100,7 @@ async function auth(fastify, options) {
 	});
 
 	fastify.post('/publickey/v2/publickey/', (request, reply) => {
-        return reply.status(200).send({
+		return reply.status(200).send({
 			"key": request.body.key,
 			"account_id": "Riot",
 			"key_guid": "2e57bba7-4a7a-423c-b4b4-853acfcf019c",
@@ -109,7 +109,59 @@ async function auth(fastify, options) {
 			"jwt": "Riot",
 			"type": "legacy"
 		})
-    });
+	});
+
+	fastify.post('/auth/v1/oauth/token', (request, reply) => {
+		const { grant_type, deployment_id } = request.body
+
+		if (grant_type == "external_auth") {
+			return reply.status(200).send({
+				"access_token": `Riot`,
+				"token_type": "bearer",
+				"expires_at": "9999-12-31T23:59:59.999Z",
+				"nonce": "6YBf2FT1QEivxlOCfueeww",
+				"features": [
+					"AntiCheat",
+					"Connect",
+					"Ecom",
+					"Inventories",
+					"LockerService"
+				],
+				"organization_id": "o-aa83a0a9bc45e98c80c1b1c9d92e9e",
+				"product_id": "prod-fn",
+				"sandbox_id": "fn",
+				"deployment_id": deployment_id,
+				"organization_user_id": "000185f80b9a4dc3aaf1ca83611c2bf5",
+				"product_user_id": "00027b91959a4c57a1272efcc4d7480f",
+				"product_user_id_created": false,
+				"id_token": `Riot`,
+				"expires_in": 3599
+			})
+		}
+		else {
+			return reply.status(200).send({
+				"access_token": `Riot`,
+				"token_type": "bearer",
+				"expires_at": "9999-12-31T23:59:59.999Z",
+				"features": [],
+				"organization_id": "o-aa83a0a9bc45e98c80c1b1c9d92e9e",
+				"product_id": "prod-fn",
+				"sandbox_id": "fn",
+				"deployment_id": deployment_id,
+				"expires_in": 115200
+			});
+		}
+	})
+
+	fastify.get('/fortnite/api/discovery/accessToken/*', (request, reply) => {
+		const useragent = request.headers["user-agent"];
+		const regex = useragent.match(/\+\+Fortnite\+Release-\d+\.\d+/);
+		reply.status(200).send({
+			"branchName" : regex[0],
+			"appId" : "Fortnite",
+			"token" : `${crypto.randomBytes(10).toString("hex")}=`
+		})
+	})
 }
 
 module.exports = auth;

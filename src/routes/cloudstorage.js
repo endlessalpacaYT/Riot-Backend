@@ -3,12 +3,31 @@ const crypto = require("crypto");
 const fs = require('fs');
 
 async function cloudstorage(fastify, options) {
-    fastify.get('/Builds/Fortnite/Content/CloudDir/*', (request, reply) => {
-        return reply.status(200).send({
-            status: "OK",
-            code: 200
-        })
+    fastify.get('/Builds/Fortnite/Content/CloudDir/:fileName', (request, reply) => {
+        const { fileName } = request.params;
+    
+        if (fileName.endsWith('.manifest')) {
+            const filePath = path.join(__dirname, "..", "responses", "LauncherAssets", "Riot.manifest")
+    
+            reply.setHeader("content-type", "application/octet-stream");
+            reply.sendFile(filePath);
+        } else if (fileName.endsWith('.ini')) {
+            const filePath = path.join(__dirname, "..", "responses", "LauncherAssets", "full.ini");
+    
+            reply.setHeader("content-type", "application/octet-stream");
+            reply.sendFile(filePath); 
+        } else {
+            reply.status(404).send({
+                error: "File not found",
+                error_description: "The requested file does not exist.",
+                code: 404
+            });
+        }
     });
+
+    fastify.head('/ias/fortnite/:Hash', (request, reply) => {
+        reply.status(200);
+    })
 
     fastify.get('/fortnite/api/cloudstorage/system', async (request, reply) => {
         const dir = path.join(__dirname, "..", "CloudStorage");
@@ -38,6 +57,9 @@ async function cloudstorage(fastify, options) {
     });
 
     fastify.get('/fortnite/api/cloudstorage/system/:filename', (request, reply) => {
+        if (filename == "config") {
+            return reply.status(204);
+        }
         const file = path.join(__dirname, "..", "CloudStorage", path.basename(request.params.file));
     
         if (fs.existsSync(file)) return reply.status(200).send(fs.readFileSync(file));
@@ -50,11 +72,11 @@ async function cloudstorage(fastify, options) {
 	});
 
 	fastify.get('/fortnite/api/cloudstorage/user/:accountId/:fileName', (request, reply) => {
-		reply.status(204).send();
+		reply.status(200).send();
 	});
 
 	fastify.put('/fortnite/api/cloudstorage/user/:accountId/:fileName', (request, reply) => {
-		reply.status(204).send();
+		reply.status(200).send();
 	});
 }
 

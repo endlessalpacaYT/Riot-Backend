@@ -3,7 +3,7 @@ A Universal Backend For More Recent Builds Of Fortnite!
 
 ## Riot Backend Is A Universal Backend For Seasons 18 And Above!
 ### Features:
-- [ ] Logging In
+- [x] Logging In
 
 ### This Backend Is Optimised For Use With Carbon!
 Invite Link:

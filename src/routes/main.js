@@ -2,13 +2,11 @@ async function main(fastify, options) {
     fastify.get('/launcher/api/public/distributionpoints', (request, reply) => {
         return reply.status(200).send({
             "distributions": [
-				"https://download.epicgames.com/",
-				"https://download2.epicgames.com/",
-				"https://download3.epicgames.com/",
-				"https://download4.epicgames.com/",
-				"https://epicgames-download1.akamaized.net/",
-				"https://fastly-download.epicgames.com/"
-			]
+                "http://localhost:5595/",
+                "https://download.epicgames.com/",
+                "https://epicgames-download1.akamaized.net/",
+                "https://fastly-download.epicgames.com/"
+            ]
         })
     });
 

@@ -39,31 +39,16 @@ async function account(fastify, options) {
     fastify.get('/epic/id/v2/sdk/accounts', (request, reply) => {
         const { accountId } = request.query;
 
-        reply.status(200).send({
-            id: accountId,
-			displayName: accountId,
-			email: "developer@riot.dev",
-			failedLoginAttempts: 0,
-			lastLogin: "",
-			numberOfDisplayNameChanges: 1,
-			dateOfBirth: "1999-01-01",
-			ageGroup: "ADULT",
-			headless: false,
-			country: "",
-			phoneNumber: "",
-			company: "Riot",
-			preferredLanguage: "en",
-			lastDisplayNameChange: "",
-			canUpdateDisplayName: true,
-			tfaEnabled: true,
-			emailVerified: true,
-			minorVerified: false,
-			minorExpected: false,
-			minorStatus: "NOT_MINOR",
-			cabinedMode: false,
-			hasHashedEmail: false,
-			externalAuths: {},
-        });
+        reply.status(200).send([
+            {
+                "accountId": accountId,
+                "displayName": accountId,
+                "preferredLanguage": "en",
+                "linkedAccounts": [],
+                "cabinedMode": false,
+                "empty": false
+            }
+        ]);
     })
 
     fastify.get('/account/api/public/account/:accountId/externalAuths', (request, reply) => {
@@ -79,6 +64,10 @@ async function account(fastify, options) {
         reply.header("Content-Type", "text/plain");
         return reply.status(200).send("true");
     });
+
+    fastify.post('/fortnite/api/game/v2/grant_access/:accountId', (request, reply) => {
+        reply.status(204);
+    })
 }
 
 module.exports = account;
