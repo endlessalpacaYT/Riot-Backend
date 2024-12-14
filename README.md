@@ -1,6 +1,8 @@
 # Riot-Backend
 A Universal Backend For More Recent Builds Of Fortnite!
 
+# Note: This is a test to see how far i can get with using epics own backend with mine!
+
 ## Riot Backend Is A Universal Backend For Seasons 18 And Above!
 ### Features:
 - [x] Login system  
