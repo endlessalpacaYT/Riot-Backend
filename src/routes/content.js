@@ -1,8 +1,16 @@
-const contentpages = require("../responses/content/contentPages.json");
+const axios = require('axios');
 
 async function content(fastify, options) {
-    fastify.get('/content/api/pages/fortnite-game*', (request, reply) => {
-        reply.status(200).send(contentpages);
+    fastify.get('/content/api/pages/fortnite-game*', async (request, reply) => {
+        const url = "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game";
+        /*const options = {
+            headers: request.headers,
+            params: request.query,
+            timeout: 10000
+        };*/
+        const response = await axios.get(url);
+
+        reply.status(response.status).send(response.data);
     })
 
     fastify.post("/api/v1/fortnite-br/surfaces/motd/target", async (request, reply) => {

@@ -1,10 +1,17 @@
 const jwt = require('jsonwebtoken');
 const crypto = require("crypto");
+const axios = require('axios');
+
+let client_credentials_accessToken;
 
 async function auth(fastify, options) {
-	fastify.post('/account/api/oauth/token', (request, reply) => {
-		console.info("Grant Type: " + request.body.grant_type);
-		return reply.status(200).send({
+	fastify.post('/account/api/oauth/token', async (request, reply) => {
+		const { grant_type } = request.body;
+		console.log("Request Headers: ", request.headers);
+		console.log("Request Body: ", request.body);
+		const url = "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/token";
+		let response;
+		let data = {
 			"access_token": `eg1~Riot`,
 			"expires_in": 2147483647,
 			"expires_at": "9999-12-31T23:59:59.999Z",
@@ -29,10 +36,47 @@ async function auth(fastify, options) {
 			"application_id": "fghi4567FNFBKFz3E4TROb0bmPS8h1GW",
 			"acr": "urn:epic:loa:aal1",
 			"auth_time": "1999-01-12T00:20:15.542Z"
-		})
+		}
+		if (grant_type == "client_credentials") {
+			if (!client_credentials_accessToken) {
+				console.log(request.headers["authorization"]);
+			axios.post(url, new URLSearchParams({
+				grant_type: 'client_credentials',
+				token_type: request.body.token_type
+			}).toString(), {
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+					"Authorization": request.headers["authorization"]
+				}
+			})
+				.then(response => {
+					console.log("Response Body:", response.data);
+
+					data.access_token = response.data.access_token;
+					data.expires_in = response.data.expires_in;
+					data.expires_at = response.data.expires_at;
+					data.token_type = response.data.token_type;
+					data.client_id = response.data.client_id;
+					data.internal_client = response.data.internal_client;
+					data.client_service = response.data.client_service;
+					data.product_id = response.data.product_id;
+					data.application_id = response.data.application_id;
+
+					reply.status(200).send(data);
+				})
+				.catch(error => {
+					console.warn("Encountered an error:", error);
+					console.log("Error:", error.response ? error.response.data : error);
+					reply.status(200).send(data);
+				});
+			}
+			return reply.status(200).send(data);
+		} else {
+			return reply.status(200).send(data);
+		}
 	})
 
-	fastify.get('/account/api/oauth/verify', (request, reply) => {
+	/*fastify.get('/account/api/oauth/verify', (request, reply) => {
 		return reply.status(200).send({
 			"access_token": `eg1~Riot`,
 			"expires_in": 2147483647,
@@ -59,7 +103,7 @@ async function auth(fastify, options) {
 			"acr": "urn:epic:loa:aal1",
 			"auth_time": "1999-01-12T00:20:15.542Z"
 		})
-	})
+	})*/
 
 	fastify.post('/epic/oauth/v2/token', (request, reply) => {
 		reply.status(200).send({
