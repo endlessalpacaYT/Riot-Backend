@@ -1,0 +1,55 @@
+{
+    "contentType": "collection",
+    "contentId": "motd-default-collection",
+    "tcId": "634e8e85-e2fc-4c68-bb10-93604cf6605f",
+    "contentItems": [
+        {
+            "contentType": "content-item",
+            "contentId": "46874c56-0973-4cbe-ac98-b580c5b36df5",
+            "tcId": "61fb3dd8-f23d-45cc-9058-058ab223ba5c",
+            "contentFields": {
+                "body": {
+                    "en": "Created by PongoDev!"
+                },
+                "entryType": "Website",
+                "image": [
+                    {
+                        "width": 1920,
+                        "height": 1080,
+                        "url": "https://pbs.twimg.com/media/GIKSDDyXsAAjzF1.jpg:large"
+                    }
+                ],
+                "tabTitleOverride": "Riot Backend",
+                "tileImage": [
+                    {
+                        "width": 1024,
+                        "height": 512,
+                        "url": "https://pbs.twimg.com/media/GIKSDDyXsAAjzF1.jpg:large"
+                    }
+                ],
+                "title": {
+                    "ar": "مرحبًا بك في Riot!",
+                    "en": "Welcome to Riot!",
+                    "de": "Willkommen bei Riot!",
+                    "es": "¡Bienvenidos a Riot!",
+                    "es-419": "¡Bienvenidos a Riot!",
+                    "fr": "Bienvenue sur Riot !",
+                    "it": "Benvenuto in Riot!",
+                    "ja": "Riotへようこそ！",
+                    "ko": "Riot에 오신 것을 환영합니다!",
+                    "pl": "Witaj w Riotze!",
+                    "pt-BR": "Bem-vindo ao Riot!",
+                    "ru": "Добро пожаловать в Riot!",
+                    "tr": "Riot'a Hoş Geldiniz!"
+                },
+                "videoAutoplay": false,
+                "videoLoop": false,
+                "videoMute": false,
+                "videoStreamingEnabled": false,
+                "websiteButtonText": "Riot Backend Github!",
+                "websiteURL": "https://github.com/endlessalpacaYT/Riot-Backend"
+            },
+            "contentSchemaName": "MotdWebsiteNewsWithVideo"
+        }
+    ]
+}

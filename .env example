@@ -1,3 +1,9 @@
 # Server Settings:
 IP=0.0.0.0
 PORT=5595
+
+# Matchmaker Settings:
+MATCHMAKER_URL=127.0.0.1:8080
+
+GS_IP=127.0.0.1
+GS_PORT=7777

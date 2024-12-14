@@ -1,0 +1,81 @@
+{
+    "channels": {
+        "standalone-store": {},
+        "client-matchmaking": {
+            "states": [],
+            "cacheExpire": "9999-01-01T00:00:00.000Z"
+        },
+        "tk": {
+            "states": [
+                {
+                    "validFrom": "2019-12-31T23:59:59.999Z",
+                    "activeEvents": [],
+                    "state": {
+                        "k": ""
+                    }
+                }
+            ],
+            "cacheExpire": ""
+        },
+        "featured-islands": {},
+        "community-votes": {},
+        "client-events": {
+            "states": [
+                {
+                    "validFrom": "2019-12-31T23:59:59.999Z",
+                    "activeEvents": [
+                        {
+                            "eventType": "heard0stone78hole65stick178feet",
+                            "activeUntil": "9999-12-31T23:59:59.999Z",
+                            "activeSince": "2019-12-31T23:59:59.999Z"
+                        },
+                        {
+                            "eventType": "RBFI",
+                            "activeUntil": "9999-12-01T21:10:00.000Z",
+                            "activeSince": "2020-11-21T07:00:00.000Z"
+                        },
+                        {
+                            "eventType": "Gal_Crashes",
+                            "activeUntil": "9999-09-14T07:00:00.000Z",
+                            "activeSince": "2015-09-14T07:00:00.000Z"
+                        },
+                        {
+                            "eventType": "Papaya_Stage",
+                            "activeUntil": "9999-12-31T23:59:59.999Z",
+                            "activeSince": "2021-06-05T14:00:00.000Z"
+                        },
+                        {
+                            "eventType": "Papaya_Theater",
+                            "activeUntil": "9999-12-31T23:59:59.999Z",
+                            "activeSince": "2021-06-05T14:00:00.000Z"
+                        }
+                    ],
+                    "state": {
+                        "activeStorefronts": [],
+                        "eventNamedWeights": {},
+                        "activeEvents": [],
+                        "seasonNumber": "27",
+                        "seasonTemplateId": "AthenaSeason:athenaseason27",
+                        "matchXpBonusPoints": 0,
+                        "eventPunchCardTemplateId": "",
+                        "seasonBegin": "2021-06-05T14:00:00Z",
+                        "seasonEnd": "9999-12-31T23:59:59.999Z",
+                        "seasonDisplayedEnd": "2021-09-30T04:00:00Z",
+                        "dailyStoreEnd": "9999-12-31T23:59:59.999Z",
+                        "weeklyStoreEnd": "9999-12-31T23:59:59.999Z",
+                        "stwEventStoreEnd": "9999-01-01T00:00:00.000Z",
+                        "stwWeeklyStoreEnd": "9999-01-01T00:00:00.000Z",
+                        "sectionStoreEnds": {
+                            "Featured": "9999-01-01T00:00:00.000Z"
+                        },
+                        "rmtPromotion": "melody"
+                    }
+                }
+            ],
+            "cacheExpire": ""
+        }
+    },
+    "currentTime": "",
+    "cacheIntervalMins": 10,
+    "eventsTimeOffsetHrs": 0
+}

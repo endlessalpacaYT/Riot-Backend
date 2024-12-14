@@ -16,12 +16,8 @@ fs.readdirSync("./src/routes").forEach(fileName => {
     }
 });
 
-fastify.addHook('onRequest', async (request, reply) => {
-    console.log(`[${new Date().toISOString()}] ${request.method} | ${request.url}`);
-});
-
 fastify.setNotFoundHandler((request, reply) => {
-    console.warn(`404 Not Found - ${request.method} ${request.url}`);
+    console.warn(`[${new Date().toISOString()}] 404 Not Found - ${request.method} ${request.url}`);
     console.warn('Headers:', request.headers);
     if (request.body) {
         console.warn('Body:', request.body);

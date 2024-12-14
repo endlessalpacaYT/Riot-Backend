@@ -157,9 +157,22 @@ async function auth(fastify, options) {
 		const useragent = request.headers["user-agent"];
 		const regex = useragent.match(/\+\+Fortnite\+Release-\d+\.\d+/);
 		reply.status(200).send({
-			"branchName" : regex[0],
-			"appId" : "Fortnite",
-			"token" : `${crypto.randomBytes(10).toString("hex")}=`
+			"branchName": regex[0],
+			"appId": "Fortnite",
+			"token": `${crypto.randomBytes(10).toString("hex")}=`
+		})
+	})
+
+	fastify.post('/epic/oauth/v2/tokenInfo', (request, reply) => {
+		reply.status(200).send({
+			"active": true,
+			"scope": "basic_profile openid offline_access",
+			"token_type": "bearer",
+			"expires_in": 2147483647,
+			"expires_at": "9999-12-31T23:59:59.999Z",
+			"account_id": "Riot",
+			"client_id": "ec684b8c687f479fadea3cb2ad83f5c6",
+			"application_id": "fghi45672f0QV6b6B1KntLd7JR7RFLWc"
 		})
 	})
 }
